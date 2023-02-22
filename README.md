@@ -24,7 +24,7 @@ The people that this project will impact or influence are, broadly speaking:
 
 ## The Two Main Components Of This Project
 
-There are two, separate but related, chemical information services propsed by this project. Very briefly, these are designed to answer the following two questions, which are described in more detail below:
+There are two, separate but related, chemical information services proposed by this project. Very briefly, these are designed to answer the following two questions, which are described in more detail below:
 
 - Does this organization know anything about this particular chemical?
 - How does this organization interpret my chemical structure, does it match my expectations?
