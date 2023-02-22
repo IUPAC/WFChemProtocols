@@ -24,15 +24,28 @@ The people that this project will impact or influence are, broadly speaking:
 
 ## The Two Main Components Of This Project
 
+There are two, separate but related, chemical information services propsed by this project. Very briefly, these are designed to answer the following two questions, which are described in more detail below:
 
+- Does this organization know anything about this particular chemical?
+- How does this organization interpret my chemical structure, does it match my expectations?
 
 
 ### Global Resolver
+
+Many public databases have programmatic interfaces that let one query for a particular chemical, through some sort of web service. But these are all unique to individual organizations; PubChem's works very differently from EPA's, etc. So an application developer that wants to gather information from multiple resources would have to write separate, specialized code for each database. This is a heavy burden. 
+
+If, instead, there were a common web service interface used by multiple database providers, then the developer could easily add the ability to query all these databases using a single code layer. One could even imagine writing a "global search" web site where a user could enter a single query, such as an InChI key or SMILES string, and have that go out to PubChem, EPA, ChEMBL, etc., to see if they have a corresponding record in their databases.
+
+Such a system would require a standard interface, presumably to a CGI using the normal HTTP protocol (because just about any programming language has a way to send HTTP calls over the internet). And that, in turn, requires participating organizations to agree on the interface, and to implement a service that adheres to it. But the advantage to standardizing on the interface alone means that the web service itself could be implemented in any technology the organization chooses - C++, Java, etc. 
+
+There is a white paper style document describing this idea, with some illustrative examples, [here in this repository](https://github.com/IUPAC/WFChemProtocols/blob/main/GlobalChemicalResolver_concept.pdf).
 
 
 ### Chemical Structure Validator
 
 
+
+
 ## What's In This Repository
 
-Currently this repository contains informational documents only, on what the project is about and what it's trying to accomplish. In the future, there may be more interactive example/demo pages, code snippets (e.g. a base implmentation of the structure validator in C++/RDKit), etc.
+Currently this repository contains informational documents only, on what the project is about and what it's trying to accomplish. Currently these documents are fairly informal. In the future, there will be more detailed and formal specification documents, and there may be interactive example/demo pages, code snippets (e.g. a base implmentation of the structure validator in C++/RDKit), etc.
