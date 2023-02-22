@@ -43,9 +43,15 @@ There is a white paper style document describing this idea, with some illustrati
 
 ### Chemical Structure Validator
 
+Machine readability of a chemical structure is a significant issue in cheminformatics. There are standard formats, of course, but different major chemical database organizations may interpret and process a record somewhat (or very) differently. This aspect of the project is not about creating a full standard for chemical structure interpretation, but rather providing a common way for individual organizations to provide feedback on what they make of the user's structure.
 
+End user chemists, such as a laboratory researcher using an ELN system, may not be expert in the cheminformatics - how the computer interprets their structure. So it would be great if there were a way for the user (through their ELN application) to ask questions such as: What does this organization think of the structure as I've drawn it here? Does it have proper valences (e.g. no pentavalent carbons)? Does it have the right number of defined stereocenters? Where are there implicit hydrogens being perceived? Does their automatically generated image of this chemical match what I've drawn?
+
+Having a common web service API to send the user's structure, and get feedback like this, would allow application developers, and by extension their users, to easily check their structures against multiple ogranizations, each of which may - and probably will - have their own rules for chemical processing, to see whether the chemicals are processed as the user expects, or whether there are ambiguities. In other words, "Is their computer handling my chemical structure the same way I (the expert chemist) have it in my head?" This is fundamental to machine readability.
+
+There is a white paper style document describing this idea, with some illustrative examples, [here in this repository](https://github.com/IUPAC/WFChemProtocols/blob/main/ChemicalStructureValidator_concept.pdf).
 
 
 ## What's In This Repository
 
-Currently this repository contains informational documents only, on what the project is about and what it's trying to accomplish. Currently these documents are fairly informal. In the future, there will be more detailed and formal specification documents, and there may be interactive example/demo pages, code snippets (e.g. a base implmentation of the structure validator in C++/RDKit), etc.
+Currently this repository contains informational documents only, on what the project is about and what it's trying to accomplish. At present, these documents are fairly informal. In the future, there will be more detailed and formal specification documents, and there may be interactive example/demo pages, code snippets (e.g. a base implmentation of the structure validator in C++/RDKit), etc.
