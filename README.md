@@ -2,7 +2,7 @@
 
 ## Description
 
-This project corresponds to Deliverable 3.3 of the WorldFAIR Chemistry project. The main scope of work will be to define a common protocol for resolving different chemical representations. The specification will articulate a shared data model for chemical information exchange through an API that can be implemented by any system that manages chemical records. Users will be able to query registered resources with different scopes and capabilities at a general level to determine where they can find additional data and information. The model will cover a range of chemical representations, including structural diagrams, nomenclature and other linear notations. The protocol will also provide a standard set of error codes for flagging ambiguous or conflicting representations.
+This project corresponds to [Deliverable 3.3] (https://iupac.org/project/2022-029-1-024/) of the [WorldFAIR Chemistry project] (https://iupac.org/project/2022-012-1-024). The main scope of work will be to define a common protocol for resolving different chemical representations. The specification will articulate a shared data model for chemical information exchange through an API that can be implemented by any system that manages chemical records. Users will be able to query registered resources with different scopes and capabilities at a general level to determine where they can find additional data and information. The model will cover a range of chemical representations, including structural diagrams, nomenclature and other linear notations. The protocol will also provide a standard set of error codes for flagging ambiguous or conflicting representations.
 
 
 ## Objective
@@ -55,3 +55,9 @@ There is a white paper style document describing this idea, with some illustrati
 ## What's In This Repository
 
 Currently this repository contains informational documents only, on what the project is about and what it's trying to accomplish. At present, these documents are fairly informal. In the future, there will be more detailed and formal specification documents, and there may be interactive example/demo pages, code snippets (e.g. a base implmentation of the structure validator in C++/RDKit), etc.
+
+## About this project 
+
+CODATA and the Research Data Alliance have recently launched the [WorldFAIR Initiative] (https://worldfair-project.eu/) to advance implementation of the [FAIR data principles] (https://force11.org/info/the-fair-data-principles/) within and across research domains. The International Union of Pure and Applied Chemistry ([IUPAC] (https://iupac.org/)), known as the world authority on chemical nomenclature, terminology, and standardized methods of measurement, is leading the [WorldFAIR Chemistry project] (https://iupac.org/project/2022-012-1-024) in a concerted effort through collaboration with related disciplines and data science communities to support broader data sharing of chemical data. The goal of WorldFAIR Chemistry is to support the use of chemical data standards in research workflows to enable downstream data reuse through practical direction and resources.
+
+*WorldFAIR “Global cooperation on FAIR data policy and practice” is funded by the EC HORIZON-WIDERA-2021-ERA-01-41 Coordination and Support Action under Grant Agreement No. 101058393.
