@@ -1,3 +1,0 @@
-# Resolver
-
-Add text here.
