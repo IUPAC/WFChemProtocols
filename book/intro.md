@@ -1,4 +1,4 @@
-# WorldFAIR Chemistry: Protocol Services
+# Project Overview
 
 ## Description
 
@@ -38,7 +38,7 @@ If, instead, there were a common web service interface used by multiple database
 
 Such a system would require a standard interface, presumably to a CGI using the normal HTTP protocol (because just about any programming language has a way to send HTTP calls over the internet). And that, in turn, requires participating organizations to agree on the interface, and to implement a service that adheres to it. But the advantage to standardizing on the interface alone means that the web service itself could be implemented in any technology the organization chooses - C++, Java, etc. 
 
-There is a white paper style document describing this idea, with some illustrative examples, [here in this repository](https://github.com/IUPAC/WFChemProtocols/blob/main/GlobalChemicalResolver_concept.pdf).
+There is a white paper style document describing this idea, with some illustrative examples, as a separate chapter in this book.
 
 
 ### Chemical Structure Validator
@@ -49,5 +49,4 @@ End user chemists, such as a laboratory researcher using an ELN system, may not 
 
 Having a common web service API to send the user's structure, and get feedback like this, would allow application developers, and by extension their users, to easily check their structures against multiple ogranizations, each of which may - and probably will - have their own rules for chemical processing, to see whether the chemicals are processed as the user expects, or whether there are ambiguities. In other words, "Is their computer handling my chemical structure the same way I (the expert chemist) have it in my head?" This is fundamental to machine readability.
 
-There is a white paper style document describing this idea, with some illustrative examples, [here in this repository](https://github.com/IUPAC/WFChemProtocols/blob/main/ChemicalStructureValidator_concept.pdf).
-
+There is a white paper style document describing this idea, with some illustrative examples, as a separate chapter in this book.

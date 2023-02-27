@@ -6,18 +6,12 @@ root: intro
 parts:
   - caption: Chemical Structure Validator
     chapters:
-      - file: validator
-        sections:
-          - file: validator/validator-concept
-          - file: validator/validator-implement
+      - file: validator/validator-concept
   - caption: Global Chemical Resolver
     chapters:
-      - file: resolver
-        sections:
-        - file: resolver/resolver-concept
-        - file: resolver/resolver-implement
+      - file: resolver/resolver-concept
   - caption: REFERENCES
     chapters:
-    - file: about
-    - file: glossary
-    - file: bibliography
+      - file: about
+#      - file: glossary
+#      - file: bibliography
