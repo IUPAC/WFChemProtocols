@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>WorldFAIR Chemistry: Protocol Services &#8212; IUPAC FAIR Chemistry Protocol Services</title>
+    <title>Project Overview &#8212; IUPAC FAIR Chemistry Protocol Services</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Validator" href="validator.html" />
+    <link rel="next" title="Chemical Structure Validator" href="validator/validator-concept.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    WorldFAIR Chemistry: Protocol Services
+                    Project Overview
                 </a>
             </li>
         </ul>
@@ -119,27 +119,10 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="validator.html">
-   Validator
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator/validator-concept.html">
+   Chemical Structure Validator
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="validator/validator-concept.html">
-     Chemical Structure Validator
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="validator/validator-implement.html">
-     Implementation of Validator
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -148,27 +131,10 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="resolver.html">
-   Resolver
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver/resolver-concept.html">
+   Global Chemical Resolver
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="resolver/resolver-concept.html">
-     Global Chemical Resolver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="resolver/resolver-implement.html">
-     Implementation of Resolver
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -180,16 +146,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="about.html">
    About this project
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bibliography.html">
-   Bibliography
   </a>
  </li>
 </ul>
@@ -410,7 +366,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>WorldFAIR Chemistry: Protocol Services</h1>
+                <h1>Project Overview</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -462,8 +418,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="worldfair-chemistry-protocol-services">
-<h1>WorldFAIR Chemistry: Protocol Services<a class="headerlink" href="#worldfair-chemistry-protocol-services" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="project-overview">
+<h1>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">#</a></h1>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">#</a></h2>
 <p>This project corresponds to <a class="reference external" href="https://iupac.org/project/2022-029-1-024/">Deliverable 3.3</a> of the <a class="reference external" href="https://iupac.org/project/2022-012-1-024">WorldFAIR Chemistry project</a>. The main scope of work will be to define a common protocol for resolving different chemical representations. The specification will articulate a shared data model for chemical information exchange through an API that can be implemented by any system that manages chemical records. Users will be able to query registered resources with different scopes and capabilities at a general level to determine where they can find additional data and information. The model will cover a range of chemical representations, including structural diagrams, nomenclature and other linear notations. The protocol will also provide a standard set of error codes for flagging ambiguous or conflicting representations.</p>
@@ -495,14 +451,14 @@ title="Print to PDF"
 <p>Many public databases have programmatic interfaces that let one query for a particular chemical, through some sort of web service. But these are all unique to individual organizations; PubChem’s works very differently from EPA’s, etc. So an application developer that wants to gather information from multiple resources would have to write separate, specialized code for each database. This is a heavy burden.</p>
 <p>If, instead, there were a common web service interface used by multiple database providers, then the developer could easily add the ability to query all these databases using a single code layer. One could even imagine writing a “global search” web site where a user could enter a single query, such as an InChI key or SMILES string, and have that go out to PubChem, EPA, ChEMBL, etc., to see if they have a corresponding record in their databases.</p>
 <p>Such a system would require a standard interface, presumably to a CGI using the normal HTTP protocol (because just about any programming language has a way to send HTTP calls over the internet). And that, in turn, requires participating organizations to agree on the interface, and to implement a service that adheres to it. But the advantage to standardizing on the interface alone means that the web service itself could be implemented in any technology the organization chooses - C++, Java, etc.</p>
-<p>There is a white paper style document describing this idea, with some illustrative examples, <a class="reference external" href="https://github.com/IUPAC/WFChemProtocols/blob/main/GlobalChemicalResolver_concept.pdf">here in this repository</a>.</p>
+<p>There is a white paper style document describing this idea, with some illustrative examples, as a separate chapter in this book.</p>
 </section>
 <section id="chemical-structure-validator">
 <h3>Chemical Structure Validator<a class="headerlink" href="#chemical-structure-validator" title="Permalink to this headline">#</a></h3>
 <p>Machine readability of a chemical structure is a significant issue in cheminformatics. There are standard formats, of course, but different major chemical database organizations may interpret and process a record somewhat (or very) differently. This aspect of the project is not about creating a full standard for chemical structure interpretation, but rather providing a common way for individual organizations to provide feedback on what they make of the user’s structure.</p>
 <p>End user chemists, such as a laboratory researcher using an ELN system, may not be expert in the cheminformatics - how the computer interprets their structure. So it would be great if there were a way for the user (through their ELN application) to ask questions such as: What does this organization think of the structure as I’ve drawn it here? Does it have proper valences (e.g. no pentavalent carbons)? Does it have the right number of defined stereocenters? Where are there implicit hydrogens being perceived? Does their automatically generated image of this chemical match what I’ve drawn?</p>
 <p>Having a common web service API to send the user’s structure, and get feedback like this, would allow application developers, and by extension their users, to easily check their structures against multiple ogranizations, each of which may - and probably will - have their own rules for chemical processing, to see whether the chemicals are processed as the user expects, or whether there are ambiguities. In other words, “Is their computer handling my chemical structure the same way I (the expert chemist) have it in my head?” This is fundamental to machine readability.</p>
-<p>There is a white paper style document describing this idea, with some illustrative examples, <a class="reference external" href="https://github.com/IUPAC/WFChemProtocols/blob/main/ChemicalStructureValidator_concept.pdf">here in this repository</a>.</p>
+<p>There is a white paper style document describing this idea, with some illustrative examples, as a separate chapter in this book.</p>
 </section>
 </section>
 <div class="toctree-wrapper compound">
@@ -540,10 +496,10 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="validator.html" title="next page">
+    <a class='right-next' id="next-link" href="validator/validator-concept.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Validator</p>
+        <p class="prev-next-title">Chemical Structure Validator</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
