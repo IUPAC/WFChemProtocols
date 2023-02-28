@@ -1,0 +1,5 @@
+# IUPAC FAIR Chemistry Protocol Services
+
+IUPAC is hosting a community project through the WorldFAIR Initiative to define a common protocol for programmatic exchange of chemical representation. Representing chemical substances in structure form is fundamental to communicating chemical information. Validation of chemical description is an essential requirement for the re-usability of FAIR chemical data. The target outcome will be a specification that articulates a shared data model for chemical information exchange through an API that can be implemented by any system that manages chemical records. This site provides a conceptual framework and demo prototype to engage community input and is supported by the International Union of Pure and Applied Chemistry (IUPAC) through the EU funded WorldFAIR project (see [About this project](https://iupac.github.io/WFChemProtocols/about.html)).   
+
+*WorldFAIR “Global cooperation on FAIR data policy and practice” is funded by the EC HORIZON-WIDERA-2021-ERA-01-41 Coordination and Support Action under Grant Agreement No. 101058393.*
