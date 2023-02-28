@@ -12,10 +12,12 @@ parts:
     chapters:
       - file: resolver/resolver-scope
       - file: resolver/resolver-architecture
+      - file: resolver/resolver-implementation
   - caption: Chemical Structure Validator
     chapters:
       - file: validator/validator-scope
       - file: validator/validator-examples
+      - file: validator/validator-application
   - caption: REFERENCES
     chapters:
       - file: about
