@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Global Chemical Resolver &#8212; IUPAC FAIR Chemistry Protocol Services</title>
+    <title>Resolver Implementations &#8212; IUPAC FAIR Chemistry Protocol Services</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="About this project" href="../about.html" />
-    <link rel="prev" title="Chemical Structure Validator" href="../validator/validator-concept.html" />
+    <link rel="next" title="Validator Motivation and Goal" href="../validator/validator-scope.html" />
+    <link rel="prev" title="Resolver Architecture Concept" href="resolver-architecture.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,19 +110,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Project Overview
+                    Chemical Data Exchange Protocols
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Chemical Structure Validator
+  Community Project
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../validator/validator-concept.html">
-   Chemical Structure Validator
+  <a class="reference internal" href="../scope.html">
+   Scope &amp; Objectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo.html">
+   Demo Prototype - we need your input!
   </a>
  </li>
 </ul>
@@ -132,9 +137,41 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver-scope.html">
+   Resolver Scope
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver-architecture.html">
+   Resolver Architecture Concept
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Global Chemical Resolver
+   Resolver Implementations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chemical Structure Validator
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-scope.html">
+   Validator Motivation and Goal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-examples.html">
+   Validator Prototype and Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-application.html">
+   Sample Web Application
   </a>
  </li>
 </ul>
@@ -239,7 +276,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fresolver/resolver-concept.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fresolver/resolver-implementation.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -267,7 +304,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/resolver/resolver-concept.md"
+        <a href="../_sources/resolver/resolver-implementation.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,31 +364,14 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation-and-goal">
-   Motivation and Goal
+  <a class="reference internal nav-link" href="#local-resolver">
+   Local Resolver
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#architecture">
-   Architecture
+  <a class="reference internal nav-link" href="#meta-resolver">
+   Meta Resolver
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#common-data-model">
-     Common Data Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-resolver">
-     Local Resolver
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#meta-resolver">
-     Meta Resolver
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -362,7 +382,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Global Chemical Resolver</h1>
+                <h1>Resolver Implementations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -373,31 +393,14 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation-and-goal">
-   Motivation and Goal
+  <a class="reference internal nav-link" href="#local-resolver">
+   Local Resolver
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#architecture">
-   Architecture
+  <a class="reference internal nav-link" href="#meta-resolver">
+   Meta Resolver
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#common-data-model">
-     Common Data Model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-resolver">
-     Local Resolver
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#meta-resolver">
-     Meta Resolver
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -409,28 +412,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="global-chemical-resolver">
-<h1>Global Chemical Resolver<a class="headerlink" href="#global-chemical-resolver" title="Permalink to this headline">#</a></h1>
-<section id="motivation-and-goal">
-<h2>Motivation and Goal<a class="headerlink" href="#motivation-and-goal" title="Permalink to this headline">#</a></h2>
-<p>This document outlines the concept of a global chemical resolver, a distributed system that will allow chemical researchers to easily ask the general question, “Which organizations around the world have information about this chemical?” – but without needing to query each resource individually or to be familiar with each site’s search interface. Rather than attempting to provide complete records for a chemical from every different database, such a search would simply provide links back to individual resources where users can get more detail. For example, a user could input a SMILES or an InChIKey, and in a single click of a button, quicky discover whether (hypothetically) PubChem has a record for that chemical, or does EPA, or ChEMBL, etc. The it would be up to the user to choose which organizations they’re interested in, and to follow links to those sites to get more information as desired.</p>
-<p>By using a common and reasonably simple communications protocol, any number of separate organizations would be able to register themselves as part of this “global search” and be able to provide results back to a single central query host. Importantly, this frees the central query manager from doing any actual cheminformatics work (e.g. parsing SMILES) or needing to know the details of each resource’s search API; it would be up to each individual resource to implement the search within their own infrastructure, presumably using methodology they already have internally. This simplifies the cross-site query system and makes it easy to add new databases to the search. It also spreads the computational burden across all organizations, rather than putting a heavy load on the central query server.</p>
-<p>Note that this document is intended more as a conceptual white paper, rather than a detailed technical specification. The implementation examples provided below are demonstrations only, not exemplars of a final product.</p>
-</section>
-<section id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h2>
-<p>The proposed design of the global resolver is fairly straightforward, and has three main components: a shared data model for information exchange, a local resolver implemented and hosted by each participating organization, and a central “meta resolver” that communicates with the local resolvers and provides the web page interface that the user interacts with directly. In brief, the user would enter a query, and the meta resolver would send that query to each local resolver in its list (presumably in parallel). Each local resolver would perform the lookup within their system, and respond back to the meta resolver which would gather all the responses to present to the user. The most important part would be for the user to be able to clearly understand which organizations are responding, and to have links to follow through to those resources for more detail. In this way, the meta resolver does not need to know what each resource’s full record contains, or to try to present each such heterogeneous record in a common way. All it needs to know is “this organization has information on this chemical” and it is then up to the user to decide where to go from there.</p>
-<p><img alt="" src="../_images/resolver-figure-1.png" /></p>
-<section id="common-data-model">
-<h3>Common Data Model<a class="headerlink" href="#common-data-model" title="Permalink to this headline">#</a></h3>
-<p>If this system is to be practical to implement across multiple databases all over the world, with new participants to be added at any time and without great effort, there must be a common “language” that is used for communications between the central meta resolver and the individual organizations’ local resolvers. It should use generic common standards for communications and the data model, that are not dependent on any particular host platform or programming language or database system. This simplifies the meta resolver because it uses exactly the same method to communicate with each organization, and frees individual organizations to implement their local component in whatever way is most convenient for them given their existing infrastructure.</p>
-<p>What is proposed here – but is certainly open to change – uses the HTTP protocol for communications, with normal CGI arguments for input, and then a simple JSON construct for the response data. These two standards are universal enough that programmers using just about any platform should have access to the data parsers and communications tools needed to implement this service.</p>
-<p>Parenthetical note: PubChem has a very simple data model for this written in XML schema, as NCBI has (publicly available) software to read and write equivalent JSON or XML (or ASN.1 historically used by NCBI) based on a single schema. This schema, in its prototype form, is used to construct the examples in the next section, and is available at</p>
-<p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver_data.xsd">https://pubchem.ncbi.nlm.nih.gov/resolver/resolver_data.xsd</a></p>
-<p>But the final implementation, if it uses JSON, should probably use a JSON-native format like JSON Schema (<a class="reference external" href="https://json-schema.org/draft/2020-12/json-schema-core.html">https://json-schema.org/draft/2020-12/json-schema-core.html</a> - although that is still under development). Or, the data format of choice for this whole system could be XML instead. Regardless, there should be some way to make it clear to developers what the structure of the data should be, and make it possible to validate the JSON data automatically. These details, and whether to use HTTP or some other protocol, are not inherently critical to the overall design of this system, but would be important to work out before individual organizations begin work on their implementations.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="resolver-implementations">
+<h1>Resolver Implementations<a class="headerlink" href="#resolver-implementations" title="Permalink to this headline">#</a></h1>
 <section id="local-resolver">
-<h3>Local Resolver<a class="headerlink" href="#local-resolver" title="Permalink to this headline">#</a></h3>
+<h2>Local Resolver<a class="headerlink" href="#local-resolver" title="Permalink to this headline">#</a></h2>
 <p>Each individual organization that wants to participate in this global search would have to implement their own resolver, hosted on their local system. As stated earlier, just how they implement it is not relevant, so long as it follows the common rules of the communications protocol. The local resolver would need to be able to interpret the query chemical structure and perform the search in their system, responding essentially with “here is a summary of what I know about this chemical” or else “I don’t have this chemical in my database.”</p>
 <p>There is available a sample implementation by PubChem. For example, each of these URLs produce the same output, from different representations of the input structure of butane (SMILES, InChIKey, InChI, and name, respectively):</p>
 <p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC">https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC</a></p>
@@ -551,12 +536,11 @@ title="Print to PDF"
 <p>Another key field here is the <strong>ResolverURL</strong> , which is the base URL of the organization’s CGI that implements this protocol; that will be important to the meta resolver.</p>
 </section>
 <section id="meta-resolver">
-<h3>Meta Resolver<a class="headerlink" href="#meta-resolver" title="Permalink to this headline">#</a></h3>
+<h2>Meta Resolver<a class="headerlink" href="#meta-resolver" title="Permalink to this headline">#</a></h2>
 <p>The last major component of this design, and the only part the user would interact with directly, is the “meta resolver” – the web page that takes user input, performs the search, and presents results back to the user. The general idea is that the meta resolver would have built into it a list of all available local resolvers. When the user submits a query, the meta resolver would (presumably in parallel) send requests to each local resolver based on that input, wait for results to be returned, and then show some sort of table of responding organizations with hyperlinks back to their record pages. This is feasible for any number of participating organizations because the HTTP request is <em>exactly the same</em> for each resource in the list, varying only by the base URL of the request ( <strong>ResolverURL</strong> above). Of course, the meta resolver would need to know that if, for example, the user supplies SMILES as input, that it would only send requests to local resolvers that implement SMILES as an input method. And as the response data from each local resolver is in <em>exactly the same</em> JSON format, the meta resolver would easily be able to parse the results from each organization, without needing to know anything about the details of that organization’s internal data structures, algorithms, etc. This makes the programming of the meta resolver relatively straightforward.</p>
 <p>( <strong>Note:</strong> there is not currently any prototype implementation of the meta resolver.)</p>
 <p>Central to the meta resolver is the list of local resolvers, those organizations participating in the “global search.” If there are to be dozens (eventually hundreds?) of such organizations, it seems there must be some way for them to self-register in some central location, without a great deal of human intervention necessary. On the other hand, there should be some basic vetting process to ensure that each resource is legitimate. Upon whom this task falls, and the policies they would follow, are not yet determined.</p>
 <p>Similarly, we will need to decide who will implement this meta resolver and store the master list of contributing organizations, and where it will be hosted. It should probably not be the provenance of any one contributing group (possible conflict of interest). Can/should this be handled by IUPAC? Or some other third party? This will need further discussion.</p>
-</section>
 </section>
 </section>
 
@@ -587,17 +571,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../validator/validator-concept.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="resolver-architecture.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chemical Structure Validator</p>
+            <p class="prev-next-title">Resolver Architecture Concept</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../about.html" title="next page">
+    <a class='right-next' id="next-link" href="../validator/validator-scope.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">About this project</p>
+        <p class="prev-next-title">Validator Motivation and Goal</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

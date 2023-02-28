@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Chemical Structure Validator &#8212; IUPAC FAIR Chemistry Protocol Services</title>
+    <title>Validator Prototype and Examples &#8212; IUPAC FAIR Chemistry Protocol Services</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Global Chemical Resolver" href="../resolver/resolver-concept.html" />
-    <link rel="prev" title="Project Overview" href="../intro.html" />
+    <link rel="next" title="Sample Web Application" href="validator-application.html" />
+    <link rel="prev" title="Validator Motivation and Goal" href="validator-scope.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,19 +110,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Project Overview
+                    Chemical Data Exchange Protocols
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Chemical Structure Validator
+  Community Project
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chemical Structure Validator
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scope.html">
+   Scope &amp; Objectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo.html">
+   Demo Prototype - we need your input!
   </a>
  </li>
 </ul>
@@ -133,8 +138,40 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../resolver/resolver-concept.html">
-   Global Chemical Resolver
+  <a class="reference internal" href="../resolver/resolver-scope.html">
+   Resolver Scope
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resolver/resolver-architecture.html">
+   Resolver Architecture Concept
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resolver/resolver-implementation.html">
+   Resolver Implementations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chemical Structure Validator
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator-scope.html">
+   Validator Motivation and Goal
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Validator Prototype and Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator-application.html">
+   Sample Web Application
   </a>
  </li>
 </ul>
@@ -239,7 +276,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fvalidator/validator-concept.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fvalidator/validator-examples.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -267,7 +304,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/validator/validator-concept.md"
+        <a href="../_sources/validator/validator-examples.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -304,80 +341,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation-and-goal">
-   Motivation and Goal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prototype-and-examples">
-   Prototype and Examples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sample-web-application">
-   Sample Web Application
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chemical Structure Validator</h1>
+                <h1>Validator Prototype and Examples</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation-and-goal">
-   Motivation and Goal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prototype-and-examples">
-   Prototype and Examples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sample-web-application">
-   Sample Web Application
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -385,17 +365,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="chemical-structure-validator">
-<h1>Chemical Structure Validator<a class="headerlink" href="#chemical-structure-validator" title="Permalink to this headline">#</a></h1>
-<section id="motivation-and-goal">
-<h2>Motivation and Goal<a class="headerlink" href="#motivation-and-goal" title="Permalink to this headline">#</a></h2>
-<p>This document outlines the concept of a standard web service API for validating chemical structures. Machine readability of chemical structure information is a critical part of modern chemical publications, but there is sometimes a disconnect between how a chemist conceives and draws chemical structure versus how that structure is stored electronically and interpreted by other various chemical information systems. Imagined here is a system by which a chemist’s application – like ChemDraw or some ELN software – could be connected to validation services provided by major databases/institutions. The chemist could then ask, with the push of a button in their application, “How will PubChem interpret my structure?” or “What will EPA CompTox make of this?” and finally “Do their representations match what I know of this chemical?”</p>
-<p>Every major chemical information system has its own rules on how to process and validate chemical structures. The goal here is not to create a standard for those rules, but rather to provide a common way for each institution to provide their own validation feedback from a chemical structure as input in an industry standard format (like SMILES or MOL/SDF). If each institution uses the same web service API for this validation, then an application like ChemDraw could easily let the user chose from a number of institutions, then provide a “validate” button that would send their structure to that institution over the internet and get back a standard response with feedback on that chemical, that the application can interpret and present back to the user.</p>
-<p>These validators would presumably answer basic chemical informatics questions like “Are all the atoms in this structure valid chemical elements and isotopes?” or “Are there proper valences for each element?” or “Are all the stereocenters present in this molecule fully recognized and defined?” If the validator can produce an image, then the chemist could check whether the automatically produced image matches what they have drawn.</p>
-<p>Note that this document is intended more as a conceptual white paper, rather than a detailed technical specification. The implementation examples provided below are demonstrations only, not exemplars of a final product.</p>
-</section>
-<section id="prototype-and-examples">
-<h2>Prototype and Examples<a class="headerlink" href="#prototype-and-examples" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="validator-prototype-and-examples">
+<h1>Validator Prototype and Examples<a class="headerlink" href="#validator-prototype-and-examples" title="Permalink to this headline">#</a></h1>
 <p>PubChem has, for demonstration purposes, created a prototype of this chemical structure validation service. In its simplest use, it takes chemical structure input (e.g. SMILES) and produces a JSON message:</p>
 <p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?action=validate_structure&amp;smiles=CCCC">https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?action=validate_structure&amp;smiles=CCCC</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -596,14 +567,6 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">&quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?action=validate\_structure&amp;format=png&amp;smiles=C[C&#64;H](CCCC(C)C)[C&#64;H]1CC[C&#64;&#64;H]2[C&#64;&#64;]1(CC[C&#64;H]3[C&#64;H]2CC=C4[C&#64;&#64;]3(CC[C&#64;&#64;H](C4)O)C)C</span> <span class="pre">&quot;</span></code></p>
 <p><img alt="" src="../_images/validator-figure-1.png" /></p>
 </section>
-<section id="sample-web-application">
-<h2>Sample Web Application<a class="headerlink" href="#sample-web-application" title="Permalink to this headline">#</a></h2>
-<p>The examples above show the actual HTTP URLs used by this proposed service. Of course, chemists aren’t generally going to be typing in URLs into their web browser, but would instead be using this as part of some other application. PubChem has a (very simplistic) example of this as a web page service that uses a simple form input to the validation CGI:</p>
-<p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?action=input_form">https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?action=input_form</a></p>
-<p>This sample web interface lets the user select an input type, and choose whether to get validation details (as JSON) or an image. It also demonstrates the possibility of accepting MOL/SDF as input, which is a multi-line format not amenable to simple URL syntax as in the examples above.</p>
-<p>(Technical note: PubChem has two different implementations of this service, one using PubChem’s existing but internal standardization software, and another using <a class="reference external" href="https://www.rdkit.org/">RDKit</a> – an open-source chemical information toolkit. At some point, example C++ code for the RDKit implementation may be shared. However, the details of the chemical validation rules will differ in some cases between PubChem and RDKit.)</p>
-</section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -632,17 +595,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="validator-scope.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Project Overview</p>
+            <p class="prev-next-title">Validator Motivation and Goal</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../resolver/resolver-concept.html" title="next page">
+    <a class='right-next' id="next-link" href="validator-application.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Global Chemical Resolver</p>
+        <p class="prev-next-title">Sample Web Application</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Global Chemical Resolver" href="resolver/resolver-concept.html" />
+    <link rel="prev" title="Sample Web Application" href="validator/validator-application.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,19 +109,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Project Overview
+                    Chemical Data Exchange Protocols
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Chemical Structure Validator
+  Community Project
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="validator/validator-concept.html">
-   Chemical Structure Validator
+  <a class="reference internal" href="scope.html">
+   Scope &amp; Objectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo.html">
+   Demo Prototype - we need your input!
   </a>
  </li>
 </ul>
@@ -132,8 +137,40 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="resolver/resolver-concept.html">
-   Global Chemical Resolver
+  <a class="reference internal" href="resolver/resolver-scope.html">
+   Resolver Scope
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver/resolver-architecture.html">
+   Resolver Architecture Concept
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver/resolver-implementation.html">
+   Resolver Implementations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chemical Structure Validator
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator/validator-scope.html">
+   Validator Motivation and Goal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator/validator-examples.html">
+   Validator Prototype and Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="validator/validator-application.html">
+   Sample Web Application
   </a>
  </li>
 </ul>
@@ -303,12 +340,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worldfair-d3-3-objective">
+   WorldFAIR D3.3 Objective
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worldfair-d3-2-scope-of-work">
+   WorldFAIR D3.2 Scope of Work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wordfair-initiative">
+   WordFAIR Initiative
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -320,6 +391,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worldfair-d3-3-objective">
+   WorldFAIR D3.3 Objective
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worldfair-d3-2-scope-of-work">
+   WorldFAIR D3.2 Scope of Work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wordfair-initiative">
+   WordFAIR Initiative
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -329,8 +423,21 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="about-this-project">
 <h1>About this project<a class="headerlink" href="#about-this-project" title="Permalink to this headline">#</a></h1>
+<p>This website is the product of the <a class="reference external" href="https://iupac.org/project/2022-028-1-024/">WorldFAIR D3.3 project</a>, one of three deliverables under the <a class="reference external" href="https://worldfair-project.eu/case-studies-of-worldfair/#chemistry">Chemistry case study</a> developed by the IUPAC Committee on Publications and Cheminformatics Data Standards (<span class="xref myst">CPCDS</span> for the <a class="reference external" href="https://worldfair-project.eu/">WorldFAIR initiative</a> (see below). The IUPAC FAIR Chemistry Protocols are intended to support the broader community in adoption of standards for programmatic exchange of chemical data. The site is designed to be a living resource through the addition of new content as strategies for implementing FAIR evolve and the sharing and reuse of FAIR chemical data continues to increase.</p>
+<section id="worldfair-d3-3-objective">
+<h2>WorldFAIR D3.3 Objective<a class="headerlink" href="#worldfair-d3-3-objective" title="Permalink to this headline">#</a></h2>
+<p>Representing chemical substances in structure form is one of the most critical functions in communicating chemistry, including sharing FAIR and machine-readable chemical data, as many resources are indexed by chemical structures. There are a range of approaches for articulating chemical substance information, depending on the scientific nature and context, and the digital motifs used in chemical databases and chemicals software, present additional layers of complexity. Chemical interpretation can vary between data systems and directly impact downstream reuse, especially when it comes to representation and analysis of associated data. Validation of chemical description is an essential requirement for the re-usability of chemical data, including discovery and in many modeling and predictive AI/ML applications.</p>
+<p>This project aims to develop web-based services that confirm chemical identity and provide real-time feedback on the machine-readability of chemical data and metadata representation, based on IUPAC standard rule sets and recommended best practices.</p>
+</section>
+<section id="worldfair-d3-2-scope-of-work">
+<h2>WorldFAIR D3.2 Scope of Work<a class="headerlink" href="#worldfair-d3-2-scope-of-work" title="Permalink to this headline">#</a></h2>
+<p>The main scope of work will be to define a common protocol for resolving different chemical representations. The specification will articulate a shared data model for information exchange through an API that can be implemented by any system that manages chemical records. Users will be able to query registered resources with different scopes and capabilities at a general level to determine where they can find additional data and information. The model will cover a range of chemical representations, including structural diagrams, nomenclature and other linear notations. The protocol will also provide a standard set of error codes for flagging ambiguous or conflicting representations.</p>
+</section>
+<section id="wordfair-initiative">
+<h2>WordFAIR Initiative<a class="headerlink" href="#wordfair-initiative" title="Permalink to this headline">#</a></h2>
 <p>The Committee on Data of the International Science Council (<a class="reference external" href="https://codata.org/">CODATA</a>) and the Research Data Alliance (<a class="reference external" href="https://rd-alliance.org/">RDA</a>) have recently launched the <a class="reference external" href="https://worldfair-project.eu/">WorldFAIR Initiative</a> to advance implementation of the <a class="reference external" href="https://force11.org/info/the-fair-data-principles/">FAIR data principles</a> within and across research domains. The International Union of Pure and Applied Chemistry (<a class="reference external" href="https://iupac.org/">IUPAC</a>), known as the world authority on chemical nomenclature, terminology, and standardized methods of measurement, is leading the <a class="reference external" href="https://iupac.org/project/2022-012-1-024">WorldFAIR Chemistry project</a> in a concerted effort through collaboration with related disciplines and data science communities to support broader data sharing of chemical data. The goal of WorldFAIR Chemistry is to support the use of chemical data standards in research workflows to enable downstream data reuse through practical direction and resources.</p>
 <p><em>WorldFAIR “Global cooperation on FAIR data policy and practice” is funded by the EC HORIZON-WIDERA-2021-ERA-01-41 Coordination and Support Action under Grant Agreement No. 101058393.</em></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -360,11 +467,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="resolver/resolver-concept.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="validator/validator-application.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Global Chemical Resolver</p>
+            <p class="prev-next-title">Sample Web Application</p>
         </div>
     </a>
 </div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Implementation of Validator &#8212; IUPAC FAIR Chemistry Protocol Services</title>
+    <title>Resolver Architecture Concept &#8212; IUPAC FAIR Chemistry Protocol Services</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,6 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Resolver Implementations" href="resolver-implementation.html" />
+    <link rel="prev" title="Resolver Scope" href="resolver-scope.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -108,11 +110,72 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    WorldFAIR Chemistry: Protocol Services
+                    Chemical Data Exchange Protocols
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Community Project
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../scope.html">
+   Scope &amp; Objectives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo.html">
+   Demo Prototype - we need your input!
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Global Chemical Resolver
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver-scope.html">
+   Resolver Scope
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Resolver Architecture Concept
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resolver-implementation.html">
+   Resolver Implementations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chemical Structure Validator
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-scope.html">
+   Validator Motivation and Goal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-examples.html">
+   Validator Prototype and Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../validator/validator-application.html">
+   Sample Web Application
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   REFERENCES
  </span>
@@ -121,16 +184,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../about.html">
    About this project
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../bibliography.html">
-   Bibliography
   </a>
  </li>
 </ul>
@@ -223,7 +276,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fvalidator/validator-implement.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2Fresolver/resolver-architecture.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -251,7 +304,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/validator/validator-implement.md"
+        <a href="../_sources/resolver/resolver-architecture.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -288,23 +341,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-data-model">
+   Common Data Model
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Implementation of Validator</h1>
+                <h1>Resolver Architecture Concept</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-data-model">
+   Common Data Model
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -312,9 +402,18 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="implementation-of-validator">
-<h1>Implementation of Validator<a class="headerlink" href="#implementation-of-validator" title="Permalink to this headline">#</a></h1>
-<p>Add text here.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="resolver-architecture-concept">
+<h1>Resolver Architecture Concept<a class="headerlink" href="#resolver-architecture-concept" title="Permalink to this headline">#</a></h1>
+<p>The proposed design of the global resolver is fairly straightforward, and has three main components: a shared data model for information exchange, a local resolver implemented and hosted by each participating organization, and a central “meta resolver” that communicates with the local resolvers and provides the web page interface that the user interacts with directly. In brief, the user would enter a query, and the meta resolver would send that query to each local resolver in its list (presumably in parallel). Each local resolver would perform the lookup within their system, and respond back to the meta resolver which would gather all the responses to present to the user. The most important part would be for the user to be able to clearly understand which organizations are responding, and to have links to follow through to those resources for more detail. In this way, the meta resolver does not need to know what each resource’s full record contains, or to try to present each such heterogeneous record in a common way. All it needs to know is “this organization has information on this chemical” and it is then up to the user to decide where to go from there.</p>
+<p><img alt="" src="../_images/resolver-figure-1.png" /></p>
+<section id="common-data-model">
+<h2>Common Data Model<a class="headerlink" href="#common-data-model" title="Permalink to this headline">#</a></h2>
+<p>If this system is to be practical to implement across multiple databases all over the world, with new participants to be added at any time and without great effort, there must be a common “language” that is used for communications between the central meta resolver and the individual organizations’ local resolvers. It should use generic common standards for communications and the data model, that are not dependent on any particular host platform or programming language or database system. This simplifies the meta resolver because it uses exactly the same method to communicate with each organization, and frees individual organizations to implement their local component in whatever way is most convenient for them given their existing infrastructure.</p>
+<p>What is proposed here – but is certainly open to change – uses the HTTP protocol for communications, with normal CGI arguments for input, and then a simple JSON construct for the response data. These two standards are universal enough that programmers using just about any platform should have access to the data parsers and communications tools needed to implement this service.</p>
+<p>Parenthetical note: PubChem has a very simple data model for this written in XML schema, as NCBI has (publicly available) software to read and write equivalent JSON or XML (or ASN.1 historically used by NCBI) based on a single schema. This schema, in its prototype form, is used to construct the examples in the next section, and is available at</p>
+<p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver_data.xsd">https://pubchem.ncbi.nlm.nih.gov/resolver/resolver_data.xsd</a></p>
+<p>But the final implementation, if it uses JSON, should probably use a JSON-native format like JSON Schema (<a class="reference external" href="https://json-schema.org/draft/2020-12/json-schema-core.html">https://json-schema.org/draft/2020-12/json-schema-core.html</a> - although that is still under development). Or, the data format of choice for this whole system could be XML instead. Regardless, there should be some way to make it clear to developers what the structure of the data should be, and make it possible to validate the JSON data automatically. These details, and whether to use HTTP or some other protocol, are not inherently critical to the overall design of this system, but would be important to work out before individual organizations begin work on their implementations.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -330,7 +429,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             name: "python3",
-            path: "./validator"
+            path: "./resolver"
         },
         predefinedOutput: true
     }
@@ -344,6 +443,20 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="resolver-scope.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Resolver Scope</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="resolver-implementation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resolver Implementations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
