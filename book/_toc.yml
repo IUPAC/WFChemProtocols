@@ -4,12 +4,18 @@
 format: jb-book
 root: intro
 parts:
+  - caption: Community Project 
+    chapters: 
+      - file: scope
+      - file: demo
   - caption: Chemical Structure Validator
     chapters:
-      - file: validator/validator-concept
+      - file: validator/validator-scope
+      - file: validator/validator-examples
   - caption: Global Chemical Resolver
     chapters:
-      - file: resolver/resolver-concept
+      - file: resolver/resolver-scope
+      - file: resolver/resolver-architecture
   - caption: REFERENCES
     chapters:
       - file: about
