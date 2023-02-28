@@ -8,14 +8,14 @@ parts:
     chapters: 
       - file: scope
       - file: demo
-  - caption: Chemical Structure Validator
-    chapters:
-      - file: validator/validator-scope
-      - file: validator/validator-examples
   - caption: Global Chemical Resolver
     chapters:
       - file: resolver/resolver-scope
       - file: resolver/resolver-architecture
+  - caption: Chemical Structure Validator
+    chapters:
+      - file: validator/validator-scope
+      - file: validator/validator-examples
   - caption: REFERENCES
     chapters:
       - file: about
