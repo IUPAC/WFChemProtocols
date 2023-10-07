@@ -437,8 +437,8 @@ url</code></pre>
 <h2>Chemical Lookup</h2>
 <p>The resolver service can check to see whether a given chemical is
 present in the host organization’s database. Examples are below, but
-note that in the interactive Jupyter notebook, one can edit the inputs
-to query whatever chemical is desired.</p>
+note that in this interactive document, one can edit the inputs to query
+whatever chemical is desired.</p>
 <p>First, to look up by SMILES string:</p>
 <pre class="r"><code>query_type &lt;- &quot;smiles&quot;
 query &lt;- &quot;CCCC&quot;
@@ -469,25 +469,97 @@ url</code></pre>
 ##     ]
 ##   }
 ## }</code></pre>
-<p>In this example code, the requests module is constructing the full
-URL from the payload argument. The resulting data indicates that there
-is indeed a matching record in the host’s database, and various record
-fields are provided that would allow the user to get more information
-directly from the hosting site; this is not intended for full record
-retrieval, but rather a simplified response that says whether the
-chemical is found and where to go to get more detail. So in this case
-the user can follow the link to the full PubChem record:</p>
+<p>In this example code, the URL is first constructed using the
+<code>query</code> and <code>query_type</code> inputs, then encoded and
+retrieved using the <code>httr</code> package. The resulting data
+indicates that there is indeed a matching record in the host’s database,
+and various record fields are provided that would allow the user to get
+more information directly from the hosting site; this is not intended
+for full record retrieval, but rather a simplified response that says
+whether the chemical is found and where to go to get more detail. So in
+this case the user can follow the link to the full PubChem record:</p>
 <p><a href="https://pubchem.ncbi.nlm.nih.gov/compound/7843" class="uri">https://pubchem.ncbi.nlm.nih.gov/compound/7843</a></p>
 <p>Or see an image of the chemical structure (although not terribly
 interesting in this case!):</p>
-<p>(TBC…)</p>
-<!-- ![test](image_url) -->
-<!-- ## Including Plots -->
-<!-- You can also embed plots, for example: -->
-<!-- ```{r pressure, echo=FALSE} -->
-<!-- plot(pressure) -->
-<!-- ``` -->
-<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
+<div class="float">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAAE5pE7RAAAAQlBMVEX19fUAAACDg4NycnIQEBDl5eWTk5NiYmIhISHU1NSjo6NSUlIxMTHExMS0tLRBQUGMjIxpaWkjIyPS0tKvr69GRkYC0qsQAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABf0lEQVR4nO3d2XKCMBQAUIoLuK/8/6+2VseKQEpNBUfOeVISMneuNw55IEkSeCvzonXPZ4YBwG8mLfsV7bsCAAN3Xeadnx5aLw+bFOWFo2cSAAAAeEv57ZcsOcSNlpWGjRzsfP81wKy5Y7vBSgPkTf0AAAAAAAAAgJOPUGO67SqMGqtN6Gow7me7y0s5lm3aZSj3LrFsVnWN9Vc7Es5Lr78nAAAAAAAAAAAAAAAAAAAAw/Wqb8Nn86aWfJIcog+xfFxwS4NtjztV5JWTOG9yWMSeqxGhXEVpGmjs1E0VzSsHhUx6POzjUkXhnUf68FVFzXmp5rA74e1juooCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Gw0nj5y23Q8Snb7439H8/pmi+X6L/3Xy8Xs8vG43z0hoFd3k4CgmsQOssC+p1ZQ45QdZoE1l8njmXxr1TKJmKND8FNgEf/+A3IqsIjnCgAAAAAAAAAAAAAAAAAAAAAAAAAAIM4nKBQHOjeMM/IAAAAASUVORK5CYII=" alt="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843" />
+<div class="figcaption"><a href="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843" class="uri">https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843</a></div>
+</div>
+<p>If the chemical is not in the database, the response would be
+something like this, where an empty result means nothing was found (this
+could also potentially be indicated by an HTTP 404 response, but is not
+done that way in this sample implementation):</p>
+<pre class="r"><code>query_type &lt;- &quot;smiles&quot;
+query &lt;- &quot;CCCC(Br)CC(F)(Cl)CCC&quot;
+url &lt;- paste0(resolver_base_url,&quot;?&quot;,query_type,&quot;=&quot;,query)
+# get results
+res &lt;- GET(URLencode(url))
+url_data &lt;- httr::content(res, type=&quot;text&quot;, encoding=&quot;UTF-8&quot;)
+
+# display URL and results
+url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC(Br)CC(F)(Cl)CCC&quot;</code></pre>
+<pre class="r"><code>cat(url_data)</code></pre>
+<pre><code>## {
+##   &quot;Result&quot;: {
+##   }
+## }</code></pre>
+<p>The resolver can handle multiple input formats for the chemical
+structure, as listed in the previous section. So all of these would
+return the same result, which can be verified by (un)commenting various
+query lines below:</p>
+<pre class="r"><code># # SMILES
+# query_type &lt;- &quot;smiles&quot;
+# query &lt;- &quot;CCCC&quot;
+
+# InChI
+query_type &lt;- &quot;inchi&quot;
+query &lt;- &quot;InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;
+
+# # InChIKey
+# query_type &lt;- &quot;inchikey&quot;
+# query &lt;- &quot;IJDNQMDRQITEOD-UHFFFAOYSA-N&quot;
+
+# # Name
+# query_type &lt;- &quot;name&quot;
+# query &lt;- &quot;butane&quot;
+
+
+url &lt;- paste0(resolver_base_url,&quot;?&quot;,query_type,&quot;=&quot;,query)
+# get results
+res &lt;- GET(URLencode(url))
+url_data &lt;- httr::content(res, type=&quot;text&quot;, encoding=&quot;UTF-8&quot;)
+
+# display URL and results
+url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?inchi=InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;</code></pre>
+<pre class="r"><code>cat(url_data)</code></pre>
+<pre><code>## {
+##   &quot;Result&quot;: {
+##     &quot;Match&quot;: [
+##       {
+##         &quot;Resource&quot;: &quot;PubChem&quot;,
+##         &quot;ResourceURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov&quot;,
+##         &quot;ResourceIdentifier&quot;: &quot;7843&quot;,
+##         &quot;ResourceIdentifierType&quot;: &quot;CID&quot;,
+##         &quot;RecordURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/compound/7843&quot;,
+##         &quot;ImageURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843&quot;,
+##         &quot;IUPACName&quot;: &quot;butane&quot;,
+##         &quot;SMILES&quot;: &quot;CCCC&quot;,
+##         &quot;InChI&quot;: &quot;InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;,
+##         &quot;InChIKey&quot;: &quot;IJDNQMDRQITEOD-UHFFFAOYSA-N&quot;
+##       }
+##     ]
+##   }
+## }</code></pre>
+<p>Note that the InChI full string needs to be URL-encoded in order to
+be passed as an argument to the CGI, as would some SMILES strings with
+special characters. This is handled using <code>URLencode</code> in
+these examples.</p>
+</div>
+<div id="chemical-structure-validation" class="section level2">
+<h2>Chemical Structure Validation</h2>
+<p>TBC…</p>
 </div>
 
 
