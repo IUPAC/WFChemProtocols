@@ -63,15 +63,12 @@ about what inputs and outputs it can handle.
 url <- resolver_base_url
 res <- GET(URLencode(url))
 url_data <- httr::content(res, type="text", encoding="UTF-8")
-# display the results
-url
 ```
 
 ```{r display results}
-url_data
-# put into object
-r <- fromJSON(url_data)
-r
+# display the results
+url
+cat(url_data)
 ```
 
 <!-- ## Including Plots -->
