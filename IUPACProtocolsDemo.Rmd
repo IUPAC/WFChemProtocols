@@ -1,5 +1,5 @@
 ---
-title: "IUPAC Protocol Services Demo"
+title: "WorldFAIR Chemistry: Protocol Services"
 author: "WorldFAIR Chemistry"
 date: "2023-10-07"
 output:
@@ -11,18 +11,22 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# WorldFAIR Chemistry: Protocol Services
+
+```{r, out.width='25%', fig.align='center', echo=FALSE}
+knitr::include_graphics('book/images/iupac_and_wf.jpg')
+```
 
 ## Interactive Demonstration
 
 This notebook is intended as an interactive demonstration of the services 
 being proposed by the IUPAC WorldFAIR Chemistry D3.3 project team. 
-A complete description of the project is available at:
+A complete description of the project is available at
 <https://iupac.github.io/WFChemProtocols/intro.html>.
 
 This notebook is an RMarkdown version of the original Jupyter Notebook, 
-which is available at:
+which is available at
 <https://github.com/IUPAC/WFChemProtocols/blob/main/IUPACProtocolsDemo.ipynb>
+
 
 ## Resolver Summary
 
@@ -70,6 +74,57 @@ url_data <- httr::content(res, type="text", encoding="UTF-8")
 url
 cat(url_data)
 ```
+
+
+## Chemical Lookup
+
+The resolver service can check to see whether a given chemical is present in 
+the host organization's database. Examples are below, but note that in the
+interactive Jupyter notebook, one can edit the inputs to query whatever 
+chemical is desired.
+
+First, to look up by SMILES string:
+
+```{r SMILES lookup}
+query_type <- "smiles"
+query <- "CCCC"
+url <- paste0(resolver_base_url,"?",query_type,"=",query)
+# get results
+res <- GET(URLencode(url))
+url_data <- httr::content(res, type="text", encoding="UTF-8")
+
+# display URL and results
+url
+cat(url_data)
+
+```
+
+In this example code, the requests module is constructing the full URL from 
+the payload argument. The resulting data indicates that there is indeed a 
+matching record in the host's database, and various record fields are provided 
+that would allow the user to get more information directly from the hosting 
+site; this is not intended for full record retrieval, but rather a simplified
+response that says whether the chemical is found and where to go to get more
+detail. So in this case the user can follow the link to the full PubChem record:
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/7843>
+
+Or see an image of the chemical structure 
+(although not terribly interesting in this case!):
+
+(TBC...)
+
+```{r display plot, out.width='25%', fig.align='center', echo=FALSE}
+r <- fromJSON(url_data)
+s <- r$Result$Match[[1]]
+image_url <- s$ImageURL
+#image_file_name <- paste0(s$ResourceIdentifierType,"_",s$ResourceIdentifier,".png")
+#image_png <- download.file(image_url,paste0("./book/images/",image_file_name))
+#knitr::include_graphics(image_png)
+### currently the image display is not working. WiP
+```
+<!-- ![test](image_url) -->
+
 
 <!-- ## Including Plots -->
 
