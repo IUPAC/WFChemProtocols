@@ -3,8 +3,8 @@ title: 'WorldFAIR Chemistry: Protocol Services'
 author: "WorldFAIR Chemistry"
 date: "2023-10-08"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 urlcolor: blue
 ---
 
@@ -73,8 +73,8 @@ res <- req |> req_perform()
 req$url
 # display raw data
 res |> resp_body_string() |> cat()
-# display as R object
-res |> resp_body_json()
+# # display as R object - suppressed for readability
+# res |> resp_body_json()
 ```
 
 ## Chemical Lookup
@@ -174,10 +174,134 @@ res |> resp_body_string() |> cat()
 
 Note that the InChI full string needs to be URL-encoded in order to be passed 
 as an argument to the CGI, as would some SMILES strings with special characters.
-This is handled automatically with the `httr2` functions used in these examples.
+This is handled automatically with the `httr2` functions in these examples.
 
 ## Chemical Structure Validation
 
-TBC...
+The second major function of the resolver is to check the validity of chemical
+structures. That is, when a user inputs a SMILES string or an SDF file (for
+example, as export from some chemical drawing package or ELN), does the host
+organization confirm that the structure is valid? Does it have the right number 
+of defined stereocenters, isotopes, etc.? Sometimes chemists draw complex
+structures in a way where stereochemistry is implied by the drawing, but may 
+not be interpreted as such by a machine. This tool will allow the chemist to 
+verify that the structure is perceived by the chemical software in the same 
+way as by the chemist themselves.
+
+When called with this special action argument, the resolver returns some basic
+statistics about what it sees in the structure. Note this may vary somewhat from
+organization to organization, especially for edge cases where different 
+chemical software packages produce slightly different results. This is 
+expected, and part of the idea here is to ask "What does PubChem think of 
+this structure?" vs. "What does EPA think of this structure?"
+
+```{r validate butane}
+req <- request(resolver_base_url) |> 
+  req_url_query(smiles = "CCCC") |>
+  req_url_query(action = "validate_structure")
+# perform request
+res <- req |> req_perform()
+# display
+req$url
+# display raw data
+res |> resp_body_string() |> cat()
+```
+
+If there is a problem with the input structure, there should some 
+human-readable message that indicates what the error is. Again this will 
+vary by organization, the message itself is not part of this standard, 
+but basic things like valence checks on organic structures will presumably 
+be handled similarly.
+
+```{r invalid structure}
+req <- request(resolver_base_url) |> 
+  req_url_query(smiles = "CC(C)(C)(C)C") |>
+  req_url_query(action = "validate_structure")
+# perform request
+res <- req |> req_perform()
+# display
+req$url
+# display raw data
+res |> resp_body_string() |> cat()
+```
+
+Here is an example where the organization's specific rules come into play. 
+PubChem, which is designed mainly for drug-like chemicals, rejects isotopes 
+with half-life less than 1 millisecond. This may not be the case for other
+databases with different purposes and goals. So even though 5H exists 
+(at least in a laboratory), it's not considered valid in PubChem.
+
+```{r 5H invalid in PubChem}
+req <- request(resolver_base_url) |> 
+  req_url_query(smiles = "C[5H]") |>
+  req_url_query(action = "validate_structure")
+# perform request
+res <- req |> req_perform()
+# display
+req$url
+# display raw data
+res |> resp_body_string() |> cat()
+```
+
+Here is a more complex example, a larger structure (Prostaglandin D_2) with 
+multiple stereocenters, both sp3 and sp2. Note the response data indicates 
+how many defined vs. undefined stereocenters are present, which may assist 
+the user in matching their expectations to the machine result.
+
+```{r Prostaglandin}
+## note that the SMILES will not work directly, an escape character is
+## needed for the "\C"
+#input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O"
+input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O"
+req <- request(resolver_base_url) |> 
+  req_url_query(smiles = input_smiles) |>
+  req_url_query(action = "validate_structure")
+# perform request
+res <- req |> req_perform()
+# display
+req$url
+# display raw data
+res |> resp_body_string() |> cat()
+```
+
+Finally, it may be helpful to chemists, who are trained to interpret chemical
+structures visually, to see a computer-generated image of their input, again 
+to see if it matches what the chemist thinks should be there. So the resolver 
+can also return an image file, with an appropriate output format request. 
+Note, the image display uses the resolver URL directly.
+
+```{r display Prostaglandin}
+input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O"
+req <- request(resolver_base_url) |> 
+  req_url_query(smiles = input_smiles) |>
+  req_url_query(action = "validate_structure") |>
+  req_url_query(format = "png")
+# perform request
+res <- req |> req_perform()
+# display
+req$url
+# display png
+knitr::include_graphics(req$url)
+# # for PDF display, have to use a saved image: 
+# knitr::include_graphics('book/images/resolver_prostaglandin.png')
+```
+
+
+## Conclusion
+
+It is our hope this this notebook provides a clear overview of the expected
+functionality of the resolver being proposed by this IUPAC project. 
+These working examples should give the user a chance to see how to submit 
+these web service requests, without having to know any programming, and to 
+be able to change the inputs with their own SMILES strings etc. in order to 
+see how the resolver responds to their unique cases.
+
+This R Markdown version was produced by [schymane](https://github.com/schymane/)
+based on the Jupyter Notebook committed by 
+[PaulThiessen](https://github.com/IUPAC/WFChemProtocols/commits?author=PaulThiessen) on [6 Oct. 2023](https://github.com/IUPAC/WFChemProtocols/commit/d5d01c131c87e41703af19f3b28756595c7e92ee).
+
+We would be happy to get feedback, please see here for details. Thank you!
+
+https://iupac.github.io/WFChemProtocols/demo.html
 
 

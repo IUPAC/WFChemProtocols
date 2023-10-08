@@ -393,12 +393,10 @@ URL, one can run the same query on multiple different sites, without
 otherwise needing to change any code.</p>
 <p>In R, this could look like this:</p>
 <pre class="r"><code>library(httr2)
-#library(rjson)
 resolver_base_url &lt;- &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi&quot;</code></pre>
 <p>When called without any arguments, the resolver will return some
 information about what inputs and outputs it can handle.</p>
-<pre class="r"><code>#url &lt;- resolver_base_url
-req &lt;- request(resolver_base_url)
+<pre class="r"><code>req &lt;- request(resolver_base_url)
 res &lt;- req |&gt; req_perform()</code></pre>
 <pre class="r"><code># display the input and results
 req$url</code></pre>
@@ -433,61 +431,8 @@ res |&gt; resp_body_string() |&gt; cat()</code></pre>
 ##     ]
 ##   }
 ## }</code></pre>
-<pre class="r"><code># display as R object
-res |&gt; resp_body_json()</code></pre>
-<pre><code>## $Result
-## $Result$ServiceDetails
-## $Result$ServiceDetails[[1]]
-## $Result$ServiceDetails[[1]]$Resource
-## [1] &quot;PubChem&quot;
-## 
-## $Result$ServiceDetails[[1]]$ResourceURL
-## [1] &quot;https://pubchem.ncbi.nlm.nih.gov&quot;
-## 
-## $Result$ServiceDetails[[1]]$ResolverURL
-## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi&quot;
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs
-## $Result$ServiceDetails[[1]]$AvailableInputs$SDF
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs$SMILES
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs$InChI
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs$InChIKey
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs$PNG
-## [1] FALSE
-## 
-## $Result$ServiceDetails[[1]]$AvailableInputs$Name
-## [1] TRUE
-## 
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs
-## $Result$ServiceDetails[[1]]$AvailableOutputs$IUPACName
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$SMILES
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$InChI
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$InChIKey
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$ResourceIdentifier
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$RecordURL
-## [1] TRUE
-## 
-## $Result$ServiceDetails[[1]]$AvailableOutputs$ImageURL
-## [1] TRUE</code></pre>
+<pre class="r"><code># # display as R object - suppressed for readability
+# res |&gt; resp_body_json()</code></pre>
 </div>
 <div id="chemical-lookup" class="section level2">
 <h2>Chemical Lookup</h2>
@@ -641,11 +586,215 @@ res |&gt; resp_body_string() |&gt; cat()</code></pre>
 <p>Note that the InChI full string needs to be URL-encoded in order to
 be passed as an argument to the CGI, as would some SMILES strings with
 special characters. This is handled automatically with the
-<code>httr2</code> functions used in these examples.</p>
+<code>httr2</code> functions in these examples.</p>
 </div>
 <div id="chemical-structure-validation" class="section level2">
 <h2>Chemical Structure Validation</h2>
-<p>TBC…</p>
+<p>The second major function of the resolver is to check the validity of
+chemical structures. That is, when a user inputs a SMILES string or an
+SDF file (for example, as export from some chemical drawing package or
+ELN), does the host organization confirm that the structure is valid?
+Does it have the right number of defined stereocenters, isotopes, etc.?
+Sometimes chemists draw complex structures in a way where
+stereochemistry is implied by the drawing, but may not be interpreted as
+such by a machine. This tool will allow the chemist to verify that the
+structure is perceived by the chemical software in the same way as by
+the chemist themselves.</p>
+<p>When called with this special action argument, the resolver returns
+some basic statistics about what it sees in the structure. Note this may
+vary somewhat from organization to organization, especially for edge
+cases where different chemical software packages produce slightly
+different results. This is expected, and part of the idea here is to ask
+“What does PubChem think of this structure?” vs. “What does EPA think of
+this structure?”</p>
+<pre class="r"><code>req &lt;- request(resolver_base_url) |&gt; 
+  req_url_query(smiles = &quot;CCCC&quot;) |&gt;
+  req_url_query(action = &quot;validate_structure&quot;)
+# perform request
+res &lt;- req |&gt; req_perform()
+# display
+req$url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC&amp;action=validate_structure&quot;</code></pre>
+<pre class="r"><code># display raw data
+res |&gt; resp_body_string() |&gt; cat()</code></pre>
+<pre><code>## {
+##   &quot;Result&quot;: {
+##     &quot;Message&quot;: &quot;Structure is valid&quot;,
+##     &quot;Statistics&quot;: [
+##       {
+##         &quot;Type&quot;: &quot;DefinedAtomStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;UndefinedAtomStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;DefinedBondStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;UndefinedBondStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;HeavyAtoms&quot;,
+##         &quot;Value&quot;: &quot;4&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;IsotopeAtoms&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;CovalentUnits&quot;,
+##         &quot;Value&quot;: &quot;1&quot;
+##       }
+##     ]
+##   }
+## }</code></pre>
+<p>If there is a problem with the input structure, there should some
+human-readable message that indicates what the error is. Again this will
+vary by organization, the message itself is not part of this standard,
+but basic things like valence checks on organic structures will
+presumably be handled similarly.</p>
+<pre class="r"><code>req &lt;- request(resolver_base_url) |&gt; 
+  req_url_query(smiles = &quot;CC(C)(C)(C)C&quot;) |&gt;
+  req_url_query(action = &quot;validate_structure&quot;)
+# perform request
+res &lt;- req |&gt; req_perform()
+# display
+req$url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CC%28C%29%28C%29%28C%29C&amp;action=validate_structure&quot;</code></pre>
+<pre class="r"><code># display raw data
+res |&gt; resp_body_string() |&gt; cat()</code></pre>
+<pre><code>## {
+##   &quot;Fault&quot;: {
+##     &quot;Code&quot;: &quot;Invalid&quot;,
+##     &quot;Message&quot;: &quot;Structure is not valid&quot;,
+##     &quot;Details&quot;: [
+##       &quot;Record 0: Warning: \&quot;pcData/pubchem_valence.cpp\&quot;, line 290: Detected illegal valence for element \&quot;C\&quot;: 5 sigma bonds, 0 pi bonds, 0 charge&quot;,
+##       &quot;Exception: Valence validation failed&quot;
+##     ]
+##   }
+## }</code></pre>
+<p>Here is an example where the organization’s specific rules come into
+play. PubChem, which is designed mainly for drug-like chemicals, rejects
+isotopes with half-life less than 1 millisecond. This may not be the
+case for other databases with different purposes and goals. So even
+though 5H exists (at least in a laboratory), it’s not considered valid
+in PubChem.</p>
+<pre class="r"><code>req &lt;- request(resolver_base_url) |&gt; 
+  req_url_query(smiles = &quot;C[5H]&quot;) |&gt;
+  req_url_query(action = &quot;validate_structure&quot;)
+# perform request
+res &lt;- req |&gt; req_perform()
+# display
+req$url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=C%5B5H%5D&amp;action=validate_structure&quot;</code></pre>
+<pre class="r"><code># display raw data
+res |&gt; resp_body_string() |&gt; cat()</code></pre>
+<pre><code>## {
+##   &quot;Fault&quot;: {
+##     &quot;Code&quot;: &quot;Invalid&quot;,
+##     &quot;Message&quot;: &quot;Structure is not valid&quot;,
+##     &quot;Details&quot;: [
+##       &quot;Record 0: Info: \&quot;OpenEye/pubchem_compound.cpp\&quot;, line 3121: Atom ID \&quot;2\&quot; has illegal isotope (5) for atomic number 1 (\&quot;H\&quot;)&quot;,
+##       &quot;Exception: Element validation failed&quot;
+##     ]
+##   }
+## }</code></pre>
+<p>Here is a more complex example, a larger structure (Prostaglandin
+D_2) with multiple stereocenters, both sp3 and sp2. Note the response
+data indicates how many defined vs. undefined stereocenters are present,
+which may assist the user in matching their expectations to the machine
+result.</p>
+<pre class="r"><code>## note that the SMILES will not work directly, an escape character is
+## needed for the &quot;\C&quot;
+#input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O&quot;
+input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O&quot;
+req &lt;- request(resolver_base_url) |&gt; 
+  req_url_query(smiles = input_smiles) |&gt;
+  req_url_query(action = &quot;validate_structure&quot;)
+# perform request
+res &lt;- req |&gt; req_perform()
+# display
+req$url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCCC%5BC%40%40H%5D%28%2FC%3DC%2F%5BC%40%40H%5D1%5BC%40H%5D%28%5BC%40H%5D%28CC1%3DO%29O%29C%2FC%3DC%5CCCCC%28%3DO%29O%29O&amp;action=validate_structure&quot;</code></pre>
+<pre class="r"><code># display raw data
+res |&gt; resp_body_string() |&gt; cat()</code></pre>
+<pre><code>## {
+##   &quot;Result&quot;: {
+##     &quot;Message&quot;: &quot;Structure is valid&quot;,
+##     &quot;Statistics&quot;: [
+##       {
+##         &quot;Type&quot;: &quot;DefinedAtomStereo&quot;,
+##         &quot;Value&quot;: &quot;4&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;UndefinedAtomStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;DefinedBondStereo&quot;,
+##         &quot;Value&quot;: &quot;2&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;UndefinedBondStereo&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;HeavyAtoms&quot;,
+##         &quot;Value&quot;: &quot;25&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;IsotopeAtoms&quot;,
+##         &quot;Value&quot;: &quot;0&quot;
+##       },
+##       {
+##         &quot;Type&quot;: &quot;CovalentUnits&quot;,
+##         &quot;Value&quot;: &quot;1&quot;
+##       }
+##     ]
+##   }
+## }</code></pre>
+<p>Finally, it may be helpful to chemists, who are trained to interpret
+chemical structures visually, to see a computer-generated image of their
+input, again to see if it matches what the chemist thinks should be
+there. So the resolver can also return an image file, with an
+appropriate output format request. Note, the image display uses the
+resolver URL directly.</p>
+<pre class="r"><code>input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O&quot;
+req &lt;- request(resolver_base_url) |&gt; 
+  req_url_query(smiles = input_smiles) |&gt;
+  req_url_query(action = &quot;validate_structure&quot;) |&gt;
+  req_url_query(format = &quot;png&quot;)
+# perform request
+res &lt;- req |&gt; req_perform()
+# display
+req$url</code></pre>
+<pre><code>## [1] &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCCC%5BC%40%40H%5D%28%2FC%3DC%2F%5BC%40%40H%5D1%5BC%40H%5D%28%5BC%40H%5D%28CC1%3DO%29O%29C%2FC%3DC%5CCCCC%28%3DO%29O%29O&amp;action=validate_structure&amp;format=png&quot;</code></pre>
+<pre class="r"><code># display png
+knitr::include_graphics(req$url)</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre class="r"><code># # for PDF display, have to use a saved image: 
+# knitr::include_graphics(&#39;book/images/resolver_prostaglandin.png&#39;)</code></pre>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>It is our hope this this notebook provides a clear overview of the
+expected functionality of the resolver being proposed by this IUPAC
+project. These working examples should give the user a chance to see how
+to submit these web service requests, without having to know any
+programming, and to be able to change the inputs with their own SMILES
+strings etc. in order to see how the resolver responds to their unique
+cases.</p>
+<p>This R Markdown version was produced by <a href="https://github.com/schymane/">schymane</a> based on the Jupyter
+Notebook committed by <a href="https://github.com/IUPAC/WFChemProtocols/commits?author=PaulThiessen">PaulThiessen</a>
+on <a href="https://github.com/IUPAC/WFChemProtocols/commit/d5d01c131c87e41703af19f3b28756595c7e92ee">6
+Oct. 2023</a>.</p>
+<p>We would be happy to get feedback, please see here for details. Thank
+you!</p>
+<p><a href="https://iupac.github.io/WFChemProtocols/demo.html" class="uri">https://iupac.github.io/WFChemProtocols/demo.html</a></p>
 </div>
 
 
