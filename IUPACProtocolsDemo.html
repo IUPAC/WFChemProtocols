@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Interactive Demonstration &#8212; IUPAC FAIR Chemistry Protocol Services</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'IUPACProtocolsDemo';</script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Resolver Scope" href="resolver/resolver-scope.html" />
+    <link rel="prev" title="Demo Prototype - we need your input!" href="demo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/iupac_and_wf.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/iupac_and_wf.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Chemical Data Exchange Protocols
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community Project</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope &amp; Objectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Demo Prototype - we need your input!</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interactive Demonstration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Global Chemical Resolver</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resolver/resolver-scope.html">Resolver Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolver/resolver-architecture.html">Resolver Architecture Concept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolver/resolver-implementation.html">Resolver Implementations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chemical Structure Validator</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="validator/validator-scope.html">Validator Motivation and Goal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validator/validator-examples.html">Validator Prototype and Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validator/validator-application.html">Sample Web Application</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">REFERENCES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About this project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/IUPAC/WFChemProtocols/blob/main/book/IUPACProtocolsDemo.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/IUPAC/WFChemProtocols" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/IUPAC/WFChemProtocols/issues/new?title=Issue%20on%20page%20%2FIUPACProtocolsDemo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/IUPACProtocolsDemo.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Interactive Demonstration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worldfair-chemistry-protocol-services">WorldFAIR Chemistry: Protocol Services</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver-summary">Resolver Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver-base-url">Resolver Base URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-lookup">Chemical Lookup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-structure-validation">Chemical Structure Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img alt="IUPAC WorldFAIR" src="https://iupac.github.io/WFChemProtocols/_static/iupac_and_wf.jpg" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="interactive-demonstration">
+<h1>Interactive Demonstration<a class="headerlink" href="#interactive-demonstration" title="Permalink to this heading">#</a></h1>
+<section id="worldfair-chemistry-protocol-services">
+<h2>WorldFAIR Chemistry: Protocol Services<a class="headerlink" href="#worldfair-chemistry-protocol-services" title="Permalink to this heading">#</a></h2>
+<p>This notebook is intended as an interactive demonstration of the services being proposed by the IUPAC WorldFAIR Chemistry D3.3 project team. A complete description of the project is available at:</p>
+<p><a class="reference external" href="https://iupac.github.io/WFChemProtocols/intro.html">https://iupac.github.io/WFChemProtocols/intro.html</a></p>
+<p>This notebook itself is available at:</p>
+<p><a class="github reference external" href="https://github.com/IUPAC/WFChemProtocols/blob/main/book/IUPACProtocolsDemo.ipynb">IUPAC/WFChemProtocols</a></p>
+</section>
+<section id="resolver-summary">
+<h2>Resolver Summary<a class="headerlink" href="#resolver-summary" title="Permalink to this heading">#</a></h2>
+<p>While more detail is provided in the documentation linked above, in short what is described here is a web service called a “resolver” that performs two main functions:</p>
+<ol class="arabic simple">
+<li><p>Check for the presence of a chemical record in the hosting organization’s database.</p></li>
+<li><p>Validate the machine-readable chemical structure according to the hosting organization’s rules.</p></li>
+</ol>
+</section>
+<section id="resolver-base-url">
+<h2>Resolver Base URL<a class="headerlink" href="#resolver-base-url" title="Permalink to this heading">#</a></h2>
+<p>The service being proposed in this project is a regular HTTP web service, using standard CGI URL syntax, and a well-defined data model for the information returned. This demonstration uses a prototype service hosted by PubChem, using JSON as the response format (although in principle it could be XML or any other structured data format).</p>
+<p>One key point of this proposal is that the base URL for the resolver CGI would vary from one institution to another, but the inputs (CGI arguments) and outputs (JSON data) would be standard, the same for any organization implementing the service. So simply by switching the base URL, one can run the same query on multiple different sites, without otherwise needing to change any code.</p>
+<p>In python, using the “requests” library, it might look like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># do not change or remove this line, the examples below depend on it</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RESOLVER_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When called without any arguments, the resolver will return some information about what inputs and outputs it can handle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this does the actual HTTP call to the resolver CGI</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi
+
+
+{
+  &quot;Result&quot;: {
+    &quot;ServiceDetails&quot;: [
+      {
+        &quot;Resource&quot;: &quot;PubChem&quot;,
+        &quot;ResourceURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov&quot;,
+        &quot;ResolverURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi&quot;,
+        &quot;AvailableInputs&quot;: {
+          &quot;SDF&quot;: true,
+          &quot;SMILES&quot;: true,
+          &quot;InChI&quot;: true,
+          &quot;InChIKey&quot;: true,
+          &quot;PNG&quot;: false,
+          &quot;Name&quot;: true
+        },
+        &quot;AvailableOutputs&quot;: {
+          &quot;IUPACName&quot;: true,
+          &quot;SMILES&quot;: true,
+          &quot;InChI&quot;: true,
+          &quot;InChIKey&quot;: true,
+          &quot;ResourceIdentifier&quot;: true,
+          &quot;RecordURL&quot;: true,
+          &quot;ImageURL&quot;: true
+        }
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="chemical-lookup">
+<h2>Chemical Lookup<a class="headerlink" href="#chemical-lookup" title="Permalink to this heading">#</a></h2>
+<p>The resolver service can check to see whether a given chemical is present in the host organization’s database. Examples are below, but note that in the interactive Jupyter notebook, one can edit the inputs to query whatever chemical is desired.</p>
+<p>First, to look up by SMILES string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCCC&quot;</span> <span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC
+
+
+{
+  &quot;Result&quot;: {
+    &quot;Match&quot;: [
+      {
+        &quot;Resource&quot;: &quot;PubChem&quot;,
+        &quot;ResourceURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov&quot;,
+        &quot;ResourceIdentifier&quot;: &quot;7843&quot;,
+        &quot;ResourceIdentifierType&quot;: &quot;CID&quot;,
+        &quot;RecordURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/compound/7843&quot;,
+        &quot;ImageURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843&quot;,
+        &quot;IUPACName&quot;: &quot;butane&quot;,
+        &quot;SMILES&quot;: &quot;CCCC&quot;,
+        &quot;InChI&quot;: &quot;InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;,
+        &quot;InChIKey&quot;: &quot;IJDNQMDRQITEOD-UHFFFAOYSA-N&quot;
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example code, the requests module is constructing the full URL from the payload argument. The resulting data indicates that there is indeed a matching record in the host’s database, and various record fields are provided that would allow the user to get more information directly from the hosting site; this is not intended for full record retrieval, but rather a simplified response that says whether the chemical is found and where to go to get more detail. So in this case the user can follow the link to the full PubChem record:</p>
+<p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/compound/7843">https://pubchem.ncbi.nlm.nih.gov/compound/7843</a></p>
+<p>Or see an image of the chemical structure (although not terribly interesting in this case!):</p>
+<p><a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843">https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843</a>
+<img alt="butane image" src="https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843" /></p>
+<p>If the chemical is not in the database, the response would be something like this, where an empty result means nothing was found (this could also potentially be indicated by an HTTP 404 response, but is not done that way in this sample implementation):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCCC(Br)CC(F)(Cl)CCC&quot;</span> <span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC%28Br%29CC%28F%29%28Cl%29CCC
+
+
+{
+  &quot;Result&quot;: {
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The resolver can handle multiple input formats for the chemical structure, as listed in the previous section. So all of these would return the same result, which can be verified by (un)commenting various payload lines below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;inchi&quot;</span><span class="p">:</span> <span class="s2">&quot;InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;</span> <span class="p">}</span>
+<span class="c1">#payload = { &quot;smiles&quot;: &quot;CCCC&quot; }</span>
+<span class="c1">#payload = { &quot;inchikey&quot;: &quot;IJDNQMDRQITEOD-UHFFFAOYSA-N&quot; }</span>
+<span class="c1">#payload = { &quot;name&quot;: &quot;butane&quot; }</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?inchi=InChI%3D1S%2FC4H10%2Fc1-3-4-2%2Fh3-4H2%2C1-2H3
+
+
+{
+  &quot;Result&quot;: {
+    &quot;Match&quot;: [
+      {
+        &quot;Resource&quot;: &quot;PubChem&quot;,
+        &quot;ResourceURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov&quot;,
+        &quot;ResourceIdentifier&quot;: &quot;7843&quot;,
+        &quot;ResourceIdentifierType&quot;: &quot;CID&quot;,
+        &quot;RecordURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/compound/7843&quot;,
+        &quot;ImageURL&quot;: &quot;https://pubchem.ncbi.nlm.nih.gov/image/imgsrv.fcgi?t=l&amp;cid=7843&quot;,
+        &quot;IUPACName&quot;: &quot;butane&quot;,
+        &quot;SMILES&quot;: &quot;CCCC&quot;,
+        &quot;InChI&quot;: &quot;InChI=1S/C4H10/c1-3-4-2/h3-4H2,1-2H3&quot;,
+        &quot;InChIKey&quot;: &quot;IJDNQMDRQITEOD-UHFFFAOYSA-N&quot;
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the InChI full string needs to be URL-encoded in order to be passed as an argument to the CGI, as would some SMILES strings with special characters. Again, this is handled automatically by the requests library in this example.</p>
+</section>
+<section id="chemical-structure-validation">
+<h2>Chemical Structure Validation<a class="headerlink" href="#chemical-structure-validation" title="Permalink to this heading">#</a></h2>
+<p>The second major function of the resolver is to check the validity of chemical structures. That is, when a user inputs a SMILES string or an SDF file (for example, as export from some chemical drawing package or ELN), does the host organization confirm that the structure is valid? Does it have the right number of defined stereocenters, isotopes, etc.? Sometimes chemists draw complex structures in a way where stereochemistry is implied by the drawing, but may not be interpreted as such by a machine. This tool will allow the chemist to verify that the structure is perceived by the chemical software in the same way as by the chemist themselves.</p>
+<p>When called with this special action argument, the resolver returns some basic statistics about what it sees in the structure. Note this may vary somewhat from organization to organization, especially for edge cases where different chemical software packages produce slightly different results. This is expected, and part of the idea here is to ask “What does PubChem think of this structure?” vs. “What does EPA think of this structure?”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCCC&quot;</span><span class="p">,</span> <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;validate_structure&quot;</span> <span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCC&amp;action=validate_structure
+
+
+{
+  &quot;Result&quot;: {
+    &quot;Message&quot;: &quot;Structure is valid&quot;,
+    &quot;Statistics&quot;: [
+      {
+        &quot;Type&quot;: &quot;DefinedAtomStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;UndefinedAtomStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;DefinedBondStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;UndefinedBondStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;HeavyAtoms&quot;,
+        &quot;Value&quot;: &quot;4&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;IsotopeAtoms&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;CovalentUnits&quot;,
+        &quot;Value&quot;: &quot;1&quot;
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>If there is a problem with the input structure, there should some human-readable message that indicates what the error is. Again this will vary by organization, the message itself is not part of this standard, but basic things like valence checks on organic structures will presumably be handled similarly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CC(C)(C)(C)C&quot;</span><span class="p">,</span> <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;validate_structure&quot;</span> <span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CC%28C%29%28C%29%28C%29C&amp;action=validate_structure
+
+
+{
+  &quot;Fault&quot;: {
+    &quot;Code&quot;: &quot;Invalid&quot;,
+    &quot;Message&quot;: &quot;Structure is not valid&quot;,
+    &quot;Details&quot;: [
+      &quot;Record 0: Warning: \&quot;pcData/pubchem_valence.cpp\&quot;, line 290: Detected illegal valence for element \&quot;C\&quot;: 5 sigma bonds, 0 pi bonds, 0 charge&quot;,
+      &quot;Exception: Valence validation failed&quot;
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is an exmple where the organization’s specific rules come into play. PubChem, which is designed mainly for drug-like chemicals, rejects isotopes with half-life less than 1 millisecond. This may not be the case for other databases with different purposes and goals. So even though <sup>5</sup>H exists (at least in a laboratory), it’s not considered valid in PubChem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;C[5H]&quot;</span><span class="p">,</span> <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;validate_structure&quot;</span> <span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=C%5B5H%5D&amp;action=validate_structure
+
+
+{
+  &quot;Fault&quot;: {
+    &quot;Code&quot;: &quot;Invalid&quot;,
+    &quot;Message&quot;: &quot;Structure is not valid&quot;,
+    &quot;Details&quot;: [
+      &quot;Record 0: Info: \&quot;OpenEye/pubchem_compound.cpp\&quot;, line 3121: Atom ID \&quot;2\&quot; has illegal isotope (5) for atomic number 1 (\&quot;H\&quot;)&quot;,
+      &quot;Exception: Element validation failed&quot;
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a more complex example, a larger structure (Prostaglandin D<sub>2</sub>) with multiple stereocenters, both sp3 and sp2. Note the response data indicates how many defined vs. undefined stereocenters are present, which may assist the user in matching their expectations to the machine result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;validate_structure&quot;</span> 
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCCC%5BC%40%40H%5D%28%2FC%3DC%2F%5BC%40%40H%5D1%5BC%40H%5D%28%5BC%40H%5D%28CC1%3DO%29O%29C%2FC%3DC%5CCCCC%28%3DO%29O%29O&amp;action=validate_structure
+
+
+{
+  &quot;Result&quot;: {
+    &quot;Message&quot;: &quot;Structure is valid&quot;,
+    &quot;Statistics&quot;: [
+      {
+        &quot;Type&quot;: &quot;DefinedAtomStereo&quot;,
+        &quot;Value&quot;: &quot;4&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;UndefinedAtomStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;DefinedBondStereo&quot;,
+        &quot;Value&quot;: &quot;2&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;UndefinedBondStereo&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;HeavyAtoms&quot;,
+        &quot;Value&quot;: &quot;25&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;IsotopeAtoms&quot;,
+        &quot;Value&quot;: &quot;0&quot;
+      },
+      {
+        &quot;Type&quot;: &quot;CovalentUnits&quot;,
+        &quot;Value&quot;: &quot;1&quot;
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, it may be helpful to chemists, who are trained to interpret chemical structures visually, to see a computer-generated image of their input, again to see if it matches what the chemist thinks should be there. So the resolver can also return an image file, with an appropriate output format request. Note, in order to show the image here in the notebook, we must use the resolver URL in the image tag directly, rather than going through python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;validate_structure&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;png&quot;</span>
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RESOLVER_BASE_URL</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCCC%5BC%40%40H%5D%28%2FC%3DC%2F%5BC%40%40H%5D1%5BC%40H%5D%28%5BC%40H%5D%28CC1%3DO%29O%29C%2FC%3DC%5CCCCC%28%3DO%29O%29O&amp;action=validate_structure&amp;format=png
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="Resolver image" src="https://pubchem.ncbi.nlm.nih.gov/resolver/resolver.cgi?smiles=CCCCC%5BC%40%40H%5D%28%2FC%3DC%2F%5BC%40%40H%5D1%5BC%40H%5D%28%5BC%40H%5D%28CC1%3DO%29O%29C%2FC%3DC%5CCCCC%28%3DO%29O%29O&amp;action=validate_structure&amp;format=png" /></p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>It is our hope this this notebook provides a clear overview of the expected functionality of the resolver being proposed by this IUPAC project. These working examples should give the user a chance to see how to submit these web service requests, without having to know any programming, and to be able to change the inputs with their own SMILES strings etc. in order to see how the resolver responds to their unique cases.</p>
+<p>We would be happy to get feedback, please see here for details. Thank you!</p>
+<p><a class="reference external" href="https://iupac.github.io/WFChemProtocols/demo.html">https://iupac.github.io/WFChemProtocols/demo.html</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Demo Prototype - we need your input!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="resolver/resolver-scope.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resolver Scope</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worldfair-chemistry-protocol-services">WorldFAIR Chemistry: Protocol Services</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver-summary">Resolver Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolver-base-url">Resolver Base URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-lookup">Chemical Lookup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-structure-validation">Chemical Structure Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By IUPAC WorldFAIR Chemistry D3.3 Project Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

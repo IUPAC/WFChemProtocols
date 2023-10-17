@@ -7,7 +7,7 @@ Representing chemical substances in structure form is one of the most critical f
 
 This project aims to develop web-based services that confirm chemical identity and provide real-time feedback on the machine-readability of chemical data and metadata representation, based on IUPAC standard rule sets and recommended best practices.
 
-## WorldFAIR D3.2 Scope of Work
+## WorldFAIR D3.3 Scope of Work
 The main scope of work will be to define a common protocol for resolving different chemical representations. The specification will articulate a shared data model for information exchange through an API that can be implemented by any system that manages chemical records. Users will be able to query registered resources with different scopes and capabilities at a general level to determine where they can find additional data and information. The model will cover a range of chemical representations, including structural diagrams, nomenclature and other linear notations. The protocol will also provide a standard set of error codes for flagging ambiguous or conflicting representations.
 
 ## WordFAIR Initiative
