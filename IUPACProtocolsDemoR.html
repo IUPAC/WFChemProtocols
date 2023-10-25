@@ -11,7 +11,7 @@
 
 <meta name="author" content="WorldFAIR Chemistry" />
 
-<meta name="date" content="2023-10-08" />
+<meta name="date" content="2023-10-25" />
 
 <title>WorldFAIR Chemistry: Protocol Services</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">WorldFAIR Chemistry: Protocol Services</h1>
 <h4 class="author">WorldFAIR Chemistry</h4>
-<h4 class="date">2023-10-08</h4>
+<h4 class="date">2023-10-25</h4>
 
 </div>
 
@@ -708,10 +708,10 @@ D_2) with multiple stereocenters, both sp3 and sp2. Note the response
 data indicates how many defined vs. undefined stereocenters are present,
 which may assist the user in matching their expectations to the machine
 result.</p>
-<pre class="r"><code>## note that the SMILES will not work directly, an escape character is
-## needed for the &quot;\C&quot;
-#input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O&quot;
-input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O&quot;
+<pre class="r"><code>## input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O&quot;
+## Since the SMILES contains an escape character, need to use a raw string r&quot;()&quot;
+## wrapper, see https://r4ds.hadley.nz/strings#sec-raw-strings
+input_smiles &lt;- r&quot;(CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O)&quot;
 req &lt;- request(resolver_base_url) |&gt; 
   req_url_query(smiles = input_smiles) |&gt;
   req_url_query(action = &quot;validate_structure&quot;)
@@ -763,7 +763,7 @@ input, again to see if it matches what the chemist thinks should be
 there. So the resolver can also return an image file, with an
 appropriate output format request. Note, the image display uses the
 resolver URL directly.</p>
-<pre class="r"><code>input_smiles &lt;- &quot;CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O&quot;
+<pre class="r"><code>input_smiles &lt;- r&quot;(CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O)&quot;
 req &lt;- request(resolver_base_url) |&gt; 
   req_url_query(smiles = input_smiles) |&gt;
   req_url_query(action = &quot;validate_structure&quot;) |&gt;
