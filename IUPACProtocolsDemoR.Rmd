@@ -1,10 +1,10 @@
 ---
 title: 'WorldFAIR Chemistry: Protocol Services'
 author: "WorldFAIR Chemistry"
-date: "2023-10-08"
+date: "2023-10-25"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 urlcolor: blue
 ---
 
@@ -249,10 +249,10 @@ how many defined vs. undefined stereocenters are present, which may assist
 the user in matching their expectations to the machine result.
 
 ```{r Prostaglandin}
-## note that the SMILES will not work directly, an escape character is
-## needed for the "\C"
-#input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O"
-input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O"
+## input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O"
+## Since the SMILES contains an escape character, need to use a raw string r"()"
+## wrapper, see https://r4ds.hadley.nz/strings#sec-raw-strings
+input_smiles <- r"(CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O)"
 req <- request(resolver_base_url) |> 
   req_url_query(smiles = input_smiles) |>
   req_url_query(action = "validate_structure")
@@ -271,7 +271,7 @@ can also return an image file, with an appropriate output format request.
 Note, the image display uses the resolver URL directly.
 
 ```{r display Prostaglandin}
-input_smiles <- "CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\\CCCC(=O)O)O"
+input_smiles <- r"(CCCCC[C@@H](/C=C/[C@@H]1[C@H]([C@H](CC1=O)O)C/C=C\CCCC(=O)O)O)"
 req <- request(resolver_base_url) |> 
   req_url_query(smiles = input_smiles) |>
   req_url_query(action = "validate_structure") |>
@@ -280,10 +280,10 @@ req <- request(resolver_base_url) |>
 res <- req |> req_perform()
 # display
 req$url
-# display png
-knitr::include_graphics(req$url)
-# # for PDF display, have to use a saved image: 
-# knitr::include_graphics('book/images/resolver_prostaglandin.png')
+# # display png
+# knitr::include_graphics(req$url)
+# for PDF display, have to use a saved image: 
+knitr::include_graphics('book/images/resolver_prostaglandin.png')
 ```
 
 
